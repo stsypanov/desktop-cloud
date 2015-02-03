@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>database-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>database-api</name>
+
+    <parent>
+        <groupId>ua.kpi.its</groupId>
+        <artifactId>desktop-cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <profiles>
+        <profile>
+            <id>mysql</id>
+            <properties>
+                <hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+                <hibernate.connection.url>jdbc:mysql://localhost:3306/desktop_cloud</hibernate.connection.url>
+                <hibernate.connection.username>admin</hibernate.connection.username>
+                <hibernate.connection.password>root</hibernate.connection.password>
+                <current_session_context_class>thread</current_session_context_class>
+                <hibernate.connection.driver_class>com.mysql.jdbc.Driver</hibernate.connection.driver_class>
+                <hibernate.transaction.factory_class>org.hibernate.transaction.JDBCTransactionFactory
+                </hibernate.transaction.factory_class>
+                <hibernate.show_sql>true</hibernate.show_sql>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>5.1.30</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>postgres</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
+                <hibernate.connection.url>jdbc:postgres://localhost:5432/desktop_cloud</hibernate.connection.url>
+                <hibernate.connection.username>postgres</hibernate.connection.username>
+                <hibernate.connection.password>root</hibernate.connection.password>
+                <current_session_context_class>thread</current_session_context_class>
+                <hibernate.connection.driver_class>org.postgres.jdbc.Driver</hibernate.connection.driver_class>
+                <hibernate.transaction.factory_class>org.hibernate.transaction.JDBCTransactionFactory
+                </hibernate.transaction.factory_class>
+                <hibernate.show_sql>true</hibernate.show_sql>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>9.1-901-1.jdbc4</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ua.kpi.its</groupId>
+            <artifactId>utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.7.Final</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>*.sql</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+
+
+</project>

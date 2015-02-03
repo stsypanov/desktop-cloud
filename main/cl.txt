@@ -1,0 +1,13 @@
+
+set JADE_HOME=C:\its\diplom\DectopCloud-master
+set CLASSPATH=%JADE_HOME%\lib\jade\lib\jade.jar;%JADE_HOME%\lib\commons-codec\commons-codec-1.6.jar;%JADE_HOME%\target
+
+
+\lib\jade\lib\jade.jar
+
+
+//to launch Chat Manager
+
+java -cp "c:\its\diplom\DectopCloud-master\lib\jade\jade.jar;lib/*" jade.Boot -gui -local-host 127.0.0.1 -local-port 1098 c:\its\diplom\DectopCloud-master\target\classes\demo\ua\kpi\its\desktop\cloud\ClientAgent
+
+
